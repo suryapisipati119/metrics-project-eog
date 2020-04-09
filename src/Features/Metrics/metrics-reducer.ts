@@ -6,6 +6,10 @@ export type WeatherForLocation = {
   temperatureinCelsius: number;
 };
 
+export type Metrics = {
+    
+}
+
 export type ApiErrorAction = {
   error: string;
 };

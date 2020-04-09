@@ -8,6 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Header from './components/Header';
 import Wrapper from './components/Wrapper';
 import NowWhat from './components/NowWhat';
+import MetricsPage from './components/metrics-page';
+import { Route, Switch } from 'react-router-dom';
 
 const store = createStore();
 const theme = createMuiTheme({
@@ -30,7 +32,10 @@ const App = () => (
     <Provider store={store}>
       <Wrapper>
         <Header />
-        <NowWhat />
+        <Switch>
+          <Route exact path="/" component={NowWhat}/>
+          <Route exact path="/metrics-page" component={MetricsPage}/>
+        </Switch>
         <ToastContainer />
       </Wrapper>
     </Provider>
