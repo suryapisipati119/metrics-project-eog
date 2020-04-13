@@ -1,6 +1,6 @@
 import { takeEvery, call } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
-import { actions as metricsActions, ApiErrorAction } from './metrics-reducer';
+import { actions as metricsMeasurementsActions, ApiErrorAction } from './metrics-measurements-reducer';
 import { PayloadAction } from 'redux-starter-kit';
 
 function* apiErrorReceived(action: PayloadAction<ApiErrorAction>) {
@@ -8,5 +8,5 @@ function* apiErrorReceived(action: PayloadAction<ApiErrorAction>) {
 }
 
 export default function* watchApiError() {
-  yield takeEvery(metricsActions.metricsApiErrorReceived.type, apiErrorReceived);
+  yield takeEvery(metricsMeasurementsActions.metricsMeasurementsApiErrorReceived.type, apiErrorReceived);
 }

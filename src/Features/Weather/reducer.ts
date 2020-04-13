@@ -31,14 +31,6 @@ const slice = createSlice({
       state.locationName = locationName;
     },
     weatherApiErrorReceived: (state, action: PayloadAction<ApiErrorAction>) => state,
-    metricDataRecevied: (state, action: PayloadAction<WeatherForLocation>) => {
-      const result = action.payload;
-      console.log(result);
-    },
-    metricMeasurementsDataRecevied: (state, action: PayloadAction<WeatherForLocation>) => {
-      const result = action.payload;
-      console.log(result);
-    },
   },
 });
 

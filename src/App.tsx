@@ -33,8 +33,8 @@ const App = () => (
       <Wrapper>
         <Header />
         <Switch>
-          <Route exact path="/" component={NowWhat}/>
-          <Route exact path="/metrics-page" component={MetricsPage}/>
+          <Route exact path="/" component={NowWhat} />
+          <Route path="/metrics-page" component={MetricsPage} />
         </Switch>
         <ToastContainer />
       </Wrapper>
