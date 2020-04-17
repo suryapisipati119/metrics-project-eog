@@ -19,7 +19,6 @@ export default () => {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
-      <CardHeader title="OK, pavan, you're all setup. Now What?" />
       <CardContent>
         <List>
           <ListItem>
@@ -38,16 +37,7 @@ export default () => {
             <Avatar>4</Avatar>
             <ListItemText primary="Chart historical metric data - Completed!" />
           </ListItem>
-          <ListItem>
-            <Avatar>5</Avatar>
-            <ListItemText primary="Submit Your App" />
-          </ListItem>
         </List>
-
-        <Typography variant="body1">
-          Remember to refer to our <a href="https://react.eogresources.com/assessing">How We Assess Submissions</a>{' '}
-          guidelines, as well as the <a href="https://react.eogresources.com/api">GraphQL API Documentation</a>.
-        </Typography>
       </CardContent>
     </Card>
   );
