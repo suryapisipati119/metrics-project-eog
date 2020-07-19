@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Provider, createClient, useQuery } from 'urql';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { FormControl, InputLabel, Select, MenuItem, makeStyles, styled } from '@material-ui/core';
+import { FormControl, makeStyles, styled, TextField } from '@material-ui/core';
+import Autocomplete, { AutocompleteRenderInputParams } from '@material-ui/lab/Autocomplete';
 import { actions } from '../Metrics/metrics-reducer';
 import MetricMeasurment from '../MetricsMeasurements/metrics-measurements';
+import { IState } from '../../store';
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -18,6 +20,12 @@ const useStyles = makeStyles(theme => ({
 const client = createClient({
   url: 'https://react.eogresources.com/graphql',
 });
+const getMetricsData = (state: IState) => {
+  const { getMetrics } = state.metrics;
+  return {
+    getMetrics,
+  };
+};
 
 const getMetricsQuery = `
 query{
@@ -36,9 +44,10 @@ export default () => {
 const Metrics = () => {
   const classes = useStyles();
   const [selectedMetric, steSelectedMetric] = React.useState('');
+  const { getMetrics } = useSelector(getMetricsData);
 
-  const handleChange = (event: any) => {
-    steSelectedMetric(event.target.value);
+  const handleChange = (value: any) => {
+    steSelectedMetric(value);
   };
 
   const dispatch = useDispatch();
@@ -60,34 +69,47 @@ const Metrics = () => {
   if (fetching) return <LinearProgress />;
 
   return (
-    <MetricComponent>
-      <StyledFormControl className={classes.formControl}>
-        <InputLabel>Select</InputLabel>
-        <Select value={selectedMetric} onChange={handleChange}>
-          {data.getMetrics.map((metrics: any) => {
-            return (
-              <MenuItem value={metrics} key={metrics.toString()}>
-                {metrics}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </StyledFormControl>
+    <ContainerStyle>
+      <ComponentStyle>
+        <StyledFormControl className={classes.formControl}>
+          <Autocomplete
+            multiple
+            id="tags-outlined"
+            options={data.getMetrics}
+            filterSelectedOptions={true}
+            onChange={(event, value) => handleChange(value)}
+            renderInput={(params: AutocompleteRenderInputParams) => (
+              <TextField {...params} variant="outlined" label="Select" placeholder="Favorites" />
+            )}
+          />
+        </StyledFormControl>
+      </ComponentStyle>
       <MetricComponent>
-        Result:
         {selectedMetric !== '' ? <MetricMeasurment selectedMetric={selectedMetric} /> : ''}
       </MetricComponent>
-    </MetricComponent>
+    </ContainerStyle>
   );
 };
 
 const StyledFormControl = styled(FormControl)({
-  position: 'fixed',
-  top: '4em',
   right: '1em',
-  width: '20%',
+  width: '40%',
+});
+
+const ContainerStyle = styled('div')({
+  padding: '15px',
+  height: '100%',
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+});
+
+const ComponentStyle = styled('div')({
+  display: 'flex',
+  justifyContent: 'flex-end',
 });
 
 const MetricComponent = styled('div')({
-  padding: '15px',
+  height: '100%',
+  width: '100%',
 });

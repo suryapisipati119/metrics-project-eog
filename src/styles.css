@@ -1,0 +1,7 @@
+.MuiCardContent-root {
+  padding: 9px !important;
+}
+
+.MuiLinearProgress-root {
+  top: -6em;
+}

@@ -3,7 +3,7 @@ import Metrics from '../Features/Metrics/Metrics-Query';
 
 export const MetricsPage: React.FC = () => {
   return (
-    <div>
+    <div style={{ width: '100%', height: 'calc(100% - 64px)', overflow: 'auto' }}>
       <Metrics />
     </div>
   );

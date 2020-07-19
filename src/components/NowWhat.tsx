@@ -20,24 +20,7 @@ export default () => {
   return (
     <Card className={classes.card}>
       <CardContent>
-        <List>
-          <ListItem>
-            <Avatar>1</Avatar>
-            <ListItemText primary="Explore the GraphQL API - Completed!" />
-          </ListItem>
-          <ListItem>
-            <Avatar>2</Avatar>
-            <ListItemText primary="Add ability to select Metrics - Completed!" />
-          </ListItem>
-          <ListItem>
-            <Avatar>3</Avatar>
-            <ListItemText primary="Display the current metric data - Completed!" />
-          </ListItem>
-          <ListItem>
-            <Avatar>4</Avatar>
-            <ListItemText primary="Chart historical metric data - Completed!" />
-          </ListItem>
-        </List>
+        Please Select the <b>Metrics</b> option in the Top Navigation bar!
       </CardContent>
     </Card>
   );
