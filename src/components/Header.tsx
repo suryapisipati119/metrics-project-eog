@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 export default () => {
   const classes = useStyles();
   const history = useHistory();
-  const name = "pavan's";
+  const name = "surya's";
   function handleClick() {
     history.push('/');
   }
